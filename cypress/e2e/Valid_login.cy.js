@@ -1,0 +1,28 @@
+describe('Login Test practice', () => {
+    it('verify search menu', () => {
+      cy.visit('https://practicetestautomation.com/practice-test-login/')
+      cy.get('input[name="username"]').type("incorrectuser")
+      cy.get('#password').eq(0).type("Password123")
+      cy.get('.btn').click()
+      cy.get('#error').eq(0).should('be.visible','have.text','Your username is invalid!')
+      cy.url().should('include','practicetest')
+      cy.get('input[name="username"]').type("student")
+      cy.get('#password').eq(0).type("Password145")
+      cy.get('.btn').click()
+      cy.url().should('include','practicetest')
+      cy.get('input[name="username"]').type("Student")
+      cy.get('#password').eq(0).type("Password")
+      cy.get('.btn').click()
+      cy.get('#error').eq(0).should('be.visible','have.text','Your password is invalid!')
+      cy.url().should('include','practicetest')
+      cy.get('input[name="username"]').type("student")
+      cy.get('#password').eq(0).type("Password123")
+      cy.get('.btn').click()
+      cy.url().should('include','practicetest')
+      cy.get('.post-title').should('be.visible','have.text','Logged In Successfully')
+      cy.get('strong').should('be.visible','have.text','Congratulations student. You successfully logged in!')
+      cy.get('a[href*="https://practicetestautomation.com/practice-test-login/"]').click( 4
+      ).should('be.visible')
+          
+    })
+  })  
